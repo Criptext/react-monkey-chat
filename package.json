@@ -1,0 +1,39 @@
+{
+  "name": "redux-monkey-chat",
+  "version": "1.0.0",
+  "description": "Reducers to Monkey-Chat-Web to create your own chat.",
+  "keywords": [
+    "redux-monkey-chat",
+    "chat",
+    "redux"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "webpack --progress --colors",
+    "clean": "rm -rf dist",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "author": "Criptext Inc.",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Criptext/MonkeyChat-Web-React"
+  },
+  "bugs": {
+    "url": "https://github.com/Criptext/MonkeyChat-Web-React/issues"
+  },
+  "devDependencies": {
+    "babel-eslint": "6.1.2",
+    "babel-loader": "6.2.4",
+    "babel-plugin-transform-object-rest-spread": "6.8.0",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.11.1",
+    "eslint": "3.1.0",
+    "eslint-loader": "1.4.1",
+    "redux": "3.5.2",
+    "webpack": "1.13.1"
+  },
+  "peerDependencies": {
+    "redux": "^3.0.0"
+  }
+}

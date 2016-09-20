@@ -143,7 +143,7 @@ export const removeMember = (userId, conversationId) => {
 export const addMember = (userId, conversationId) => {
 	return {
 		type: ADD_MEMBER,
-		userId: monkeyId,
+		userId: userId,
 		conversationId: conversationId
 	}
 }

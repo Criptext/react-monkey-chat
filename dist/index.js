@@ -322,7 +322,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var addMember = exports.addMember = function addMember(userId, conversationId) {
 		return {
 			type: ADD_MEMBER,
-			userId: monkeyId,
+			userId: userId,
 			conversationId: conversationId
 		};
 	};

@@ -1,6 +1,6 @@
 {
   "name": "redux-monkey-chat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reducers to Monkey-Chat-Web to create your own chat.",
   "keywords": [
     "redux-monkey-chat",

@@ -169,36 +169,17 @@ const conversations = (state = {}, action) => {
 const conversation = (state, action) => {
 	switch (action.type) {
 		case UPDATE_CONVERSATION_STATUS: {
-			if( typeof action.conversation.description !== 'undefined') {
+			if( typeof action.conversation.description == 'string') {
 				return {
 					...state,
 					description: action.conversation.description
 				}
-			}else if(!action.conversation.online) {
-				if(action.conversation.lastOpenMe){
-					return {
-						...state,
-						lastOpenMe: action.conversation.lastOpenMe,
-						lastOpenApp: action.conversation.lastOpenApp,
-						online: action.conversation.online
-					}
-				}
-				return {
-					...state,
-					lastOpenApp: action.conversation.lastOpenApp,
-					online: action.conversation.online
-				}
 			}else{
-				if(action.conversation.lastOpenMe) {
-					return {
-						...state,
-						lastOpenMe: action.conversation.lastOpenMe,
-						online: action.conversation.online
-					}
-				}
 				return {
 					...state,
-					online: action.conversation.online
+					online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
+					lastSeen: action.conversation.lastSeen ? action.conversation.lastSeen : state.lastSeen,
+					lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe
 				}
 			}
 		}

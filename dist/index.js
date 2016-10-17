@@ -534,6 +534,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						});
 					} else {
 						return _extends({}, state, {
+							description: typeof action.conversation.description != 'undefined' ? action.conversation.description : state.description,
 							online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 							lastSeen: action.conversation.lastSeen ? action.conversation.lastSeen : state.lastSeen,
 							lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe

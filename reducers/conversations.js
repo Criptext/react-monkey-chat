@@ -33,6 +33,30 @@ const conversations = (state = {}, action) => {
 		
 		case ADD_CONVERSATION: {
 			const conversationId = action.conversation.id;
+			if(state[conversationId]){
+				if(Object.keys(action.conversation.messages.length == 1)){
+					var add_message_action = {
+						type: ADD_MESSAGE,
+						message: action.conversation.messages[Object.keys(action.conversation.messages)[0]],
+						conversationId: conversationId,
+						unread: true
+					}
+					return {
+						...state,
+						[conversationId]: conversation(state[conversationId], add_message_action)
+					}
+				}else{
+					var add_messages_action = {
+						type: ADD_MESSAGES,
+						conversation: action.conversation,
+						messages: action.conversation.messages
+					};
+					return {
+	 					...state,
+	 					[conversationId]: conversation(state[conversationId], add_messages_action)
+	 				}
+				}
+			}
 			return {
 				...state,
 				[conversationId]: action.conversation

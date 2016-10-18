@@ -33,6 +33,17 @@ const conversations = (state = {}, action) => {
 		
 		case ADD_CONVERSATION: {
 			const conversationId = action.conversation.id;
+			if(state[conversationId]){
+				var newAction = {
+					type: ADD_MESSAGES,
+					conversation: action.conversation,
+					messages: action.conversation.messages
+				}
+				return {
+					...state,
+					[conversationId]: conversation(state[conversationId], newAction)
+				}
+			}
 			return {
 				...state,
 				[conversationId]: action.conversation
@@ -259,6 +270,7 @@ const conversation = (state, action) => {
 		case ADD_MESSAGES: {
 			return {
 				...state,
+				lastMessage: action.conversation.lastMessage ? action.conversation.lastMessage : state.lastMessage,
 				messages: messages(state.messages, action),
 				loading: action.conversation.loading
 			}

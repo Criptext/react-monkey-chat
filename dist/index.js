@@ -128,7 +128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var users = function users() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 		var action = arguments[1];
 
 		switch (action.type) {
@@ -406,7 +406,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var conversations = function conversations() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 		var action = arguments[1];
 
 		switch (action.type) {
@@ -423,6 +423,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			case _actions.ADD_CONVERSATION:
 				{
 					var conversationId = action.conversation.id;
+					if (state[conversationId]) {
+						var newAction = {
+							type: _actions.ADD_MESSAGES,
+							conversation: action.conversation,
+							messages: action.conversation.messages
+						};
+						return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], newAction)));
+					}
 					return _extends({}, state, _defineProperty({}, conversationId, action.conversation));
 				}
 
@@ -616,6 +624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			case _actions.ADD_MESSAGES:
 				{
 					return _extends({}, state, {
+						lastMessage: action.conversation.lastMessage ? action.conversation.lastMessage : state.lastMessage,
 						messages: messages(state.messages, action),
 						loading: action.conversation.loading
 					});

@@ -424,12 +424,22 @@ return /******/ (function(modules) { // webpackBootstrap
 				{
 					var conversationId = action.conversation.id;
 					if (state[conversationId]) {
-						var newAction = {
-							type: _actions.ADD_MESSAGES,
-							conversation: action.conversation,
-							messages: action.conversation.messages
-						};
-						return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], newAction)));
+						if (Object.keys(action.conversation.messages.length == 1)) {
+							var add_message_action = {
+								type: _actions.ADD_MESSAGE,
+								message: action.conversation.messages[Object.keys(action.conversation.messages)[0]],
+								conversationId: conversationId,
+								unread: true
+							};
+							return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], add_message_action)));
+						} else {
+							var newAction = {
+								type: _actions.ADD_MESSAGES,
+								conversation: action.conversation,
+								messages: action.conversation.messages
+							};
+							return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], newAction)));
+						}
 					}
 					return _extends({}, state, _defineProperty({}, conversationId, action.conversation));
 				}
@@ -624,7 +634,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			case _actions.ADD_MESSAGES:
 				{
 					return _extends({}, state, {
-						lastMessage: action.conversation.lastMessage ? action.conversation.lastMessage : state.lastMessage,
 						messages: messages(state.messages, action),
 						loading: action.conversation.loading
 					});

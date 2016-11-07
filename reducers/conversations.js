@@ -197,7 +197,8 @@ const conversation = (state, action) => {
 				return {
 					...state,
 					description: action.conversation.description,
-					membersTyping: action.conversation.membersTyping || state.membersTyping
+					membersTyping: action.conversation.membersTyping || state.membersTyping,
+					preview: action.conversation.preview
 				}
 			}else{
 				return {
@@ -206,7 +207,8 @@ const conversation = (state, action) => {
 					online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 					lastSeen: action.conversation.lastSeen ? action.conversation.lastSeen : state.lastSeen,
 					lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe,
-					membersTyping: action.conversation.membersTyping || state.membersTyping
+					membersTyping: action.conversation.membersTyping || state.membersTyping,
+					preview: action.conversation.preview
 				}
 			}
 		}

@@ -549,7 +549,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					if (typeof action.conversation.description == 'string') {
 						return _extends({}, state, {
 							description: action.conversation.description,
-							membersTyping: action.conversation.membersTyping || state.membersTyping
+							membersTyping: action.conversation.membersTyping || state.membersTyping,
+							preview: action.conversation.preview
 						});
 					} else {
 						return _extends({}, state, {
@@ -557,7 +558,8 @@ return /******/ (function(modules) { // webpackBootstrap
 							online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 							lastSeen: action.conversation.lastSeen ? action.conversation.lastSeen : state.lastSeen,
 							lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe,
-							membersTyping: action.conversation.membersTyping || state.membersTyping
+							membersTyping: action.conversation.membersTyping || state.membersTyping,
+							preview: action.conversation.preview
 						});
 					}
 				}

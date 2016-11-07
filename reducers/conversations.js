@@ -196,7 +196,8 @@ const conversation = (state, action) => {
 			if( typeof action.conversation.description == 'string') {
 				return {
 					...state,
-					description: action.conversation.description
+					description: action.conversation.description,
+					membersTyping: action.conversation.membersTyping || state.membersTyping
 				}
 			}else{
 				return {
@@ -204,7 +205,8 @@ const conversation = (state, action) => {
 					description: typeof action.conversation.description != 'undefined' ? action.conversation.description : state.description,
 					online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 					lastSeen: action.conversation.lastSeen ? action.conversation.lastSeen : state.lastSeen,
-					lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe
+					lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe,
+					membersTyping: action.conversation.membersTyping || state.membersTyping
 				}
 			}
 		}

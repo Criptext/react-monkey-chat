@@ -433,12 +433,12 @@ return /******/ (function(modules) { // webpackBootstrap
 							};
 							return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], add_message_action)));
 						} else {
-							var newAction = {
+							var add_messages_action = {
 								type: _actions.ADD_MESSAGES,
 								conversation: action.conversation,
 								messages: action.conversation.messages
 							};
-							return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], newAction)));
+							return _extends({}, state, _defineProperty({}, conversationId, conversation(state[conversationId], add_messages_action)));
 						}
 					}
 					return _extends({}, state, _defineProperty({}, conversationId, action.conversation));
@@ -548,14 +548,16 @@ return /******/ (function(modules) { // webpackBootstrap
 				{
 					if (typeof action.conversation.description == 'string') {
 						return _extends({}, state, {
-							description: action.conversation.description
+							description: action.conversation.description,
+							membersTyping: action.conversation.membersTyping || state.membersTyping
 						});
 					} else {
 						return _extends({}, state, {
 							description: typeof action.conversation.description != 'undefined' ? action.conversation.description : state.description,
 							online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 							lastSeen: action.conversation.lastSeen ? action.conversation.lastSeen : state.lastSeen,
-							lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe
+							lastOpenMe: action.conversation.lastOpenMe ? action.conversation.lastOpenMe : state.lastOpenMe,
+							membersTyping: action.conversation.membersTyping || state.membersTyping
 						});
 					}
 				}

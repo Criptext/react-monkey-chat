@@ -3,8 +3,9 @@ import { ADD_CONVERSATION,
 	ADD_CONVERSATIONS,
 	DELETE_CONVERSATIONS,
 	UPDATE_CONVERSATION_STATUS,
-	UPDATE_CONVERSATION_ADMIN,
 	UPDATE_CONVERSATION_NAME,
+	UPDATE_CONVERSATION_ADMIN,
+	UPDATE_CONVERSATION_INFO,
 	UPDATE_CONVERSATION_UNREAD_COUNTER,
 	UPDATE_CONVERSATION_LOADING,
 	ADD_MEMBER,
@@ -96,6 +97,14 @@ const conversations = (state = {}, action) => {
 			}
 		}
 
+		case UPDATE_CONVERSATION_INFO: {
+			const conversationId = action.conversation.id;
+			return {
+				...state,
+				[conversationId]: conversation(state[conversationId], action)
+			}
+		}
+		
 		case UPDATE_CONVERSATION_UNREAD_COUNTER: {
 			const conversationId = action.conversation.id;
 			return {
@@ -226,14 +235,14 @@ const conversation = (state, action) => {
 				admin: action.admin
 			}
 		}
-
-		case UPDATE_CONVERSATION_UNREAD_COUNTER: {
+		
+		case UPDATE_CONVERSATION_INFO: {
 			return {
 				...state,
-				unreadMessageCounter: action.unreadCounter
+				info: action.conversation.info
 			}
 		}
-
+		
 		case UPDATE_CONVERSATION_UNREAD_COUNTER: {
 			return {
 				...state,

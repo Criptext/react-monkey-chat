@@ -128,13 +128,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var users = function users() {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+		var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 		var action = arguments[1];
 
 		switch (action.type) {
 			case _actions.ADD_USER_SESSION:
 				return _extends({}, state, {
-					userSession: action.user
+					userSession: _extends({}, action.user)
 				});
 
 			case _actions.DELETE_USER_SESSION:
@@ -190,6 +190,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var DELETE_CONVERSATIONS = exports.DELETE_CONVERSATIONS = packageName + 'DELETE_CONVERSATIONS';
 	var UPDATE_CONVERSATION_STATUS = exports.UPDATE_CONVERSATION_STATUS = packageName + 'UPDATE_CONVERSATION_STATUS';
 	var UPDATE_CONVERSATION_ADMIN = exports.UPDATE_CONVERSATION_ADMIN = packageName + 'UPDATE_CONVERSATION_ADMIN';
+	var UPDATE_CONVERSATION_INFO = exports.UPDATE_CONVERSATION_INFO = packageName + 'UPDATE_CONVERSATION_INFO';
 	var UPDATE_CONVERSATION_NAME = exports.UPDATE_CONVERSATION_NAME = packageName + 'UPDATE_CONVERSATION_NAME';
 	var UPDATE_CONVERSATION_UNREAD_COUNTER = exports.UPDATE_CONVERSATION_UNREAD_COUNTER = packageName + 'UPDATE_CONVERSATION_UNREAD_COUNTER';
 	var UPDATE_CONVERSATION_LOADING = exports.UPDATE_CONVERSATION_LOADING = packageName + 'UPDATE_CONVERSATION_LOADING';
@@ -278,6 +279,13 @@ return /******/ (function(modules) { // webpackBootstrap
 			type: UPDATE_CONVERSATION_ADMIN,
 			conversation: conversation,
 			admin: admins
+		};
+	};
+
+	var updateConversationInfo = exports.updateConversationInfo = function updateConversationInfo(conversation) {
+		return {
+			type: UPDATE_CONVERSATION_INFO,
+			conversation: conversation
 		};
 	};
 
@@ -406,7 +414,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var conversations = function conversations() {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+		var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 		var action = arguments[1];
 
 		switch (action.type) {
@@ -470,71 +478,77 @@ return /******/ (function(modules) { // webpackBootstrap
 					return _extends({}, state, _defineProperty({}, _conversationId4, conversation(state[_conversationId4], action)));
 				}
 
-			case _actions.UPDATE_CONVERSATION_UNREAD_COUNTER:
+			case _actions.UPDATE_CONVERSATION_INFO:
 				{
 					var _conversationId5 = action.conversation.id;
 					return _extends({}, state, _defineProperty({}, _conversationId5, conversation(state[_conversationId5], action)));
 				}
 
-			case _actions.UPDATE_CONVERSATION_LOADING:
+			case _actions.UPDATE_CONVERSATION_UNREAD_COUNTER:
 				{
 					var _conversationId6 = action.conversation.id;
 					return _extends({}, state, _defineProperty({}, _conversationId6, conversation(state[_conversationId6], action)));
 				}
 
-			case _actions.ADD_MEMBER:
+			case _actions.UPDATE_CONVERSATION_LOADING:
 				{
-					var _conversationId7 = action.conversationId;
+					var _conversationId7 = action.conversation.id;
 					return _extends({}, state, _defineProperty({}, _conversationId7, conversation(state[_conversationId7], action)));
 				}
 
-			case _actions.REMOVE_MEMBER:
+			case _actions.ADD_MEMBER:
 				{
 					var _conversationId8 = action.conversationId;
 					return _extends({}, state, _defineProperty({}, _conversationId8, conversation(state[_conversationId8], action)));
 				}
 
-			case _actions.ADD_MESSAGE:
+			case _actions.REMOVE_MEMBER:
 				{
 					var _conversationId9 = action.conversationId;
 					return _extends({}, state, _defineProperty({}, _conversationId9, conversation(state[_conversationId9], action)));
 				}
 
-			case _actions.ADD_MESSAGES:
+			case _actions.ADD_MESSAGE:
 				{
-					var _conversationId10 = action.conversation.id;
+					var _conversationId10 = action.conversationId;
 					return _extends({}, state, _defineProperty({}, _conversationId10, conversation(state[_conversationId10], action)));
 				}
 
-			case _actions.UPDATE_MESSAGE_DATA:
+			case _actions.ADD_MESSAGES:
 				{
-					var _conversationId11 = action.conversationId;
+					var _conversationId11 = action.conversation.id;
 					return _extends({}, state, _defineProperty({}, _conversationId11, conversation(state[_conversationId11], action)));
 				}
 
-			case _actions.UPDATE_MESSAGE_DATA_STATUS:
+			case _actions.UPDATE_MESSAGE_DATA:
 				{
 					var _conversationId12 = action.conversationId;
 					return _extends({}, state, _defineProperty({}, _conversationId12, conversation(state[_conversationId12], action)));
 				}
 
-			case _actions.UPDATE_MESSAGE_STATUS:
+			case _actions.UPDATE_MESSAGE_DATA_STATUS:
 				{
 					var _conversationId13 = action.conversationId;
 					return _extends({}, state, _defineProperty({}, _conversationId13, conversation(state[_conversationId13], action)));
 				}
 
-			case _actions.UPDATE_MESSAGES_STATUS:
+			case _actions.UPDATE_MESSAGE_STATUS:
 				{
 					var _conversationId14 = action.conversationId;
 					return _extends({}, state, _defineProperty({}, _conversationId14, conversation(state[_conversationId14], action)));
 				}
 
-			case _actions.DELETE_MESSAGE:
+			case _actions.UPDATE_MESSAGES_STATUS:
 				{
 					var _conversationId15 = action.conversationId;
-
 					return _extends({}, state, _defineProperty({}, _conversationId15, conversation(state[_conversationId15], action)));
+				}
+
+			case _actions.DELETE_MESSAGE:
+				{
+					var _conversationId16 = action.conversationId;
+
+					return _extends({}, state, _defineProperty({}, _conversationId16, conversation(state[_conversationId16], action)));
 				}
 
 			default:
@@ -578,10 +592,10 @@ return /******/ (function(modules) { // webpackBootstrap
 					});
 				}
 
-			case _actions.UPDATE_CONVERSATION_UNREAD_COUNTER:
+			case _actions.UPDATE_CONVERSATION_INFO:
 				{
 					return _extends({}, state, {
-						unreadMessageCounter: action.unreadCounter
+						info: action.conversation.info
 					});
 				}
 

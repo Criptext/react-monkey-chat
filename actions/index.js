@@ -10,6 +10,7 @@ export const ADD_CONVERSATIONS = packageName+'ADD_CONVERSATIONS'
 export const DELETE_CONVERSATIONS = packageName+'DELETE_CONVERSATIONS'
 export const UPDATE_CONVERSATION_STATUS = packageName+'UPDATE_CONVERSATION_STATUS'
 export const UPDATE_CONVERSATION_ADMIN = packageName+'UPDATE_CONVERSATION_ADMIN'
+export const UPDATE_CONVERSATION_INFO = packageName+'UPDATE_CONVERSATION_INFO'
 export const UPDATE_CONVERSATION_NAME = packageName+'UPDATE_CONVERSATION_NAME'
 export const UPDATE_CONVERSATION_UNREAD_COUNTER = packageName+'UPDATE_CONVERSATION_UNREAD_COUNTER'
 export const UPDATE_CONVERSATION_LOADING = packageName+'UPDATE_CONVERSATION_LOADING'
@@ -99,6 +100,13 @@ export const updateConversationAdmin = (conversation, admins) => {
 		type: UPDATE_CONVERSATION_ADMIN,
 		conversation: conversation,
 		admin: admins
+	}
+}
+
+export const updateConversationInfo = (conversation) => {
+	return {
+		type: UPDATE_CONVERSATION_INFO,
+		conversation: conversation	
 	}
 }
 

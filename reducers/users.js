@@ -5,12 +5,12 @@ const users = (state = {}, action) => {
 		case ADD_USER_SESSION:
 			return {
 				...state,
-				userSession: action.user,
+				userSession: { ...action.user }
 			}
 		
 		case DELETE_USER_SESSION:
 			return {
-				userSession: null,
+				userSession: null
 			}
 
 		case ADD_USERS_CONTACT:
@@ -23,7 +23,7 @@ const users = (state = {}, action) => {
 			const userId = action.user.id;
 			return {
 				...state,
-				[userId]: action.user,
+				[userId]: action.user
 			}
 
 		case UPDATE_USER_SESSION:

@@ -239,7 +239,8 @@ const conversation = (state, action) => {
 		case UPDATE_CONVERSATION_INFO: {
 			return {
 				...state,
-				info: action.conversation.info
+				info: action.conversation.info,
+				lastModified: action.conversation.lastModified
 			}
 		}
 		

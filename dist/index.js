@@ -595,7 +595,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			case _actions.UPDATE_CONVERSATION_INFO:
 				{
 					return _extends({}, state, {
-						info: action.conversation.info
+						info: action.conversation.info,
+						lastModified: action.conversation.lastModified
 					});
 				}
 

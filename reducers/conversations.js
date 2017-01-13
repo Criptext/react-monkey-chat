@@ -206,6 +206,7 @@ const conversation = (state, action) => {
 				return {
 					...state,
 					description: action.conversation.description,
+					online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 					membersTyping: action.conversation.membersTyping || state.membersTyping,
 					preview: action.conversation.preview
 				}
@@ -240,8 +241,9 @@ const conversation = (state, action) => {
 			return {
 				...state,
 				info: action.conversation.info,
-				lastModified: action.conversation.lastModified
+				lastModified: action.conversation.lastModified ? action.conversation.lastModified : state.lastModified
 			}
+
 		}
 		
 		case UPDATE_CONVERSATION_UNREAD_COUNTER: {

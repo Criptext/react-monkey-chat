@@ -563,6 +563,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					if (typeof action.conversation.description == 'string') {
 						return _extends({}, state, {
 							description: action.conversation.description,
+							online: typeof action.conversation.online != 'undefined' ? action.conversation.online : state.online,
 							membersTyping: action.conversation.membersTyping || state.membersTyping,
 							preview: action.conversation.preview
 						});
@@ -596,7 +597,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				{
 					return _extends({}, state, {
 						info: action.conversation.info,
-						lastModified: action.conversation.lastModified
+						lastModified: action.conversation.lastModified ? action.conversation.lastModified : state.lastModified
 					});
 				}
 
